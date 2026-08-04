@@ -1,5 +1,6 @@
 @use('App\Models\Story')
 @use('App\Models\User')
+@use('App\Enums\UserRole')
 
 @extends('layouts.app')
 
@@ -12,7 +13,12 @@
     @auth
         <p>
             Вы: <a href="{{ route('profile.show') }}">{{ auth()->user()->name }}</a><br>
-            роль: {{ auth()->user()->role }}
+            роль:
+            @if($route = auth()->user()->roleRoute())
+                <a href="{{$route}}">{{ucfirst(auth()->user()->role->value)}}</a>
+            @else
+                {{ ucfirst(auth()->user()->role->value) }}
+            @endif
         </p>
     @endauth
 
@@ -108,7 +114,7 @@
                 <label for="tags">Метки:</label>
                 <select id="tags" name="tags[]" multiple size="1">
                     @foreach($tags as $tag)
-                        <option value="{{ $tag->id }}" @selected(in_array($tag->id, request('tags', [])))>{{$tag->name}}</option>
+                        <option value="{{ $tag->id }}" @selected(in_array($tag->id, request('tags', []), true))>{{$tag->name}}</option>
                     @endforeach
                 </select>
             </div>

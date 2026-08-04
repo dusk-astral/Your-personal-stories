@@ -6,6 +6,8 @@
 
     <h1>Admin Dashboard</h1>
 
+    <a href="{{ route('stories.index') }}">Истории</a>
+
     <a href="{{ route('admin.users.index') }}"><h2>Users</h2></a>
 
     <ul>
@@ -15,7 +17,7 @@
         <li>Admins: {{ $usersCount['admin'] }}</li>
     </ul>
 
-    <a href="{{ route('admin.stories.index') }}"><h2>Stories</h2></a>
+    <a href="{{ route('admin.stories.index') }}"><h2>Admin stories</h2></a>
 
     <ul>
         <li>Total: {{ $storyCount['total'] }}</li>
@@ -28,7 +30,7 @@
 
     <ul>
         @foreach($latestUsers as $user)
-            <li> <b>{{ $user->role->value }}</b> - {{ $user->name }}</li>
+            <li> <b>{{ $user->role->value }} - </b><a href="{{ route('profile.public', $user) }}">{{ $user->name }}</a></li>
         @endforeach
     </ul>
 
@@ -36,7 +38,7 @@
 
     <ul>
         @foreach($latestStories as $story)
-            <li><b>{{ $story->status }}</b> - {{ $story->title }} </li>
+            <li><b>{{ $story->status }}</b> - <a href="{{ route('stories.show', $story) }}">{{ $story->title }}</a> </li>
         @endforeach
     </ul>
 

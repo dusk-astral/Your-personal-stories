@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
 Route::resource('stories', StoryController::class)->only(['index', 'show']); // public routes
 
 /**
- * Маршруты для модерации
+ * Moderation
  */
 
 Route::prefix('moderator')
@@ -64,7 +64,7 @@ Route::prefix('moderator')
     });
 
 /**
- * Маршруты для админа
+ * Admin
  */
 
 Route::prefix('admin')
@@ -91,7 +91,7 @@ Route::prefix('admin')
     });
 
 /**
- * Профиль пользователя
+ * User Profile
  */
 
 Route::prefix('profile')

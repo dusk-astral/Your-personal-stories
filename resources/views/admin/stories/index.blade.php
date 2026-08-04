@@ -79,7 +79,7 @@
             <label for="tags">Метки:</label>
                 <select id="tags" name="tags[]" multiple size="1">
                     @foreach($tags as $tag)
-                        <option value="{{ $tag->id }}" @selected(in_array($tag->id, request('tags',[])))>{{$tag->name}}</option>
+                        <option value="{{ $tag->id }}" @selected(in_array($tag->id, request('tags',[]), true))>{{$tag->name}}</option>
                     @endforeach
                 </select>
         </div>

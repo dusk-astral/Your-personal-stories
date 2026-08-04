@@ -19,7 +19,7 @@ class StoryModerationController extends Controller
     {
         $stories = Story::query()
             ->where('status', StoryStatus::Pending )
-            ->filter($request->safe->only(['user_id', 'date_from', 'date_to', 'tags']))
+            ->filter($request->safe()->only(['user_id', 'date_from', 'date_to', 'tags']))
             ->sort($request->validated('sort', 'latest'))
             ->with(['user', 'tags'])
             ->latest()

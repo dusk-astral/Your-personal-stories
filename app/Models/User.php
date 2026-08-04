@@ -58,6 +58,18 @@ class User extends Authenticatable
     }
 
     /*
+     * Метод для указания ролей пользователей
+     */
+    public function roleRoute(): ?string
+    {
+        return match($this->role) {
+          UserRole::Admin => route('admin.dashboard'),
+          UserRole::Moderator => route('moderator.stories.index'),
+          default => null
+        };
+    }
+
+    /*
      * Касты для атрибутов пользователей
      */
     protected function casts(): array

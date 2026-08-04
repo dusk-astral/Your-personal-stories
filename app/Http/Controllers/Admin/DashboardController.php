@@ -28,8 +28,8 @@ class DashboardController extends Controller
             'rejected' => Story::where('status', StoryStatus::Rejected)->count(),
         ];
 
-        $latestUsers = User::latest()->limit(5)->get();
-        $latestStories = Story::latest()->limit(5)->get();
+        $latestUsers = User::latest()->take(5)->get();
+        $latestStories = Story::latest()->take(5)->get();
 
         return view('admin.dashboard', compact('latestUsers', 'latestStories', 'usersCount', 'storyCount'));
     }

@@ -21,7 +21,7 @@ class StoryController extends Controller
     {
         $stories = Story::query()
             ->with(['user', 'tags'])
-            ->filter($request->safe->only(['status', 'user_id', 'date_from', 'date_to', 'tags']))
+            ->filter($request->safe()->only(['status', 'user_id', 'date_from', 'date_to', 'tags']))
             ->sort($request->validated('sort', 'latest'))
             ->simplePaginate()
             ->withQueryString();
