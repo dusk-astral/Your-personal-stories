@@ -26,7 +26,7 @@ class StoryFactory extends Factory
             'body' => fake()->paragraph(3),
             'status' => StoryStatus::Pending,
             'rejected_reason' => null,
-            'moderated_by' => null,
+            'moderated_by' => 'Default',
             'published_at' => null
         ];
     }
